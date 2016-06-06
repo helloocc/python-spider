@@ -31,12 +31,13 @@ class HtmlParser(object):
         res_data = {}
 
         # url
-
         res_data['url'] = page_url
+        
         # <dd class="lemmaWgt-lemmaTitle-title"><h1>Python</h1>
         title_node = soup.find('dd', class_= "lemmaWgt-lemmaTitle-title").find("h1")
         res_data['title'] = title_node.get_text()
-
+        
+        # <div class="lemma-summary">
         summary_node = soup.find('div', class_="lemma-summary")
         res_data['summary'] = summary_node.get_text()
         return res_data
