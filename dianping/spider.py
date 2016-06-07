@@ -1,20 +1,18 @@
 #!/usr/bin/env python2
 # -*- coding: UTF-8 -*-
 
-import urllib2
+import urllib2, re
 from bs4 import BeautifulSoup
 from collections import OrderedDict
-import re
 
 class Spider(object):
-    def main(self):
-        url = "http://s.dianping.com/event/nanjing"    
-        obj_spider.craw(url)
+
         
     def craw(self, url):
         cont = self.download(url)
-        data = self.parse(url, cont)
-        self.output(data)
+        res_data = self.parse(url, cont)
+        self.output(res_data)
+        return res_data.keys()
         
     def download(self, url):
         if url is None:
@@ -28,20 +26,24 @@ class Spider(object):
         if url is None or cont is None:
             return
         soup = BeautifulSoup(cont, 'html.parser', from_encoding='utf-8')
-        data = OrderedDict()
-        data['url'] = url
+        res_data = OrderedDict()
+
+        # http://s.dianping.com/event/nanjing 
+        city = url.split("/")[4]
+        res_data[city] = url
+        
+        # 此处会返回同一个event两次
         links = soup.find_all('a', href=re.compile(r"^/event/\d+"))
+        
+        # 将event的number和title加入到OrderedDict中，并去除重复
         for link in links :
-            data[link['href']] = link['title']
-        return data
+            num = re.compile("\d+").search(link['href']).group()
+            res_data[str(num)] = link['title']
+        
+        return res_data
     
     def output(self, data):
-        fout = open('output', 'w')
-        for key, value in data.iteritems():
-            print key, value
+        fout = open('file', 'w')
+        for key in data.iterkeys():
             fout.write(key + '\n')
         fout.close()
-    
-if __name__ == "__main__":
-    obj_spider = Spider()
-    obj_spider.main()
