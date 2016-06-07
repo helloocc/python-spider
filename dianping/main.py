@@ -1,7 +1,7 @@
 # -*--coding:utf-8*-
 from dianping.spider import Spider
 import time
-from dianping.send_email import send_mail
+from dianping import send_email
 
 def check(new_data):
     file_data = []
@@ -26,18 +26,22 @@ if __name__ == "__main__":
 
     while True:
         hour = int(time.strftime('%H'))
-        if hour > 9 and hour < 19: 
+        
+        if hour >= 9 and hour <= 19: 
             new_data = obj_spider.craw(url)
             add_items = check(new_data)
-           
-            if(len(add_items) == 0):
-                print "No change!"
-            else:
+            if(len(add_items) > 0):
                 title = time.strftime('%Y%m%d %H:%M:%S')
                 content = add_items
-                send_mail(title, content)
-                break
-            time.sleep(15)
+                send_email(title, content)
+            time.sleep(20)
+            
+        elif hour < 8 or hour > 20:
+            time.sleep(3598)
+        else:
+            time.sleep(1000)
+                    
+        
 
 
          

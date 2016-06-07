@@ -3,7 +3,7 @@ import smtplib
 from email.mime.text import MIMEText
 import time
 
-def send_mail(title, content):
+def send_email(title, content):
     mail_recipient = r'helloc@wo.cn'
     mail_host = "smtp.wo.cn"
     mail_sender = r"helloc@wo.cn"
@@ -27,7 +27,8 @@ def send_mail(title, content):
         print 'send failed!'
         print str(e)
         return False
-    
+
+# test    
 if __name__ == '__main__':
     while True:
         hour = int(time.strftime('%H'))
@@ -35,7 +36,7 @@ if __name__ == '__main__':
         if hour > 9 and hour < 16:
             title = time.strftime('%Y%m%d %H:%M:%S')
             content = u'你好'
-            send_mail(title, content)
+            send_email(title, content)
         time.sleep(15)
 
 
