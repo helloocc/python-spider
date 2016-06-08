@@ -11,7 +11,7 @@ class Spider(object):
     def craw(self, url):
         cont = self.download(url)
         res_data = self.parse(url, cont)
-        self.output(res_data)
+#         self.output(res_data)
         return res_data.keys()
         
     def download(self, url):
