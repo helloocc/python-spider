@@ -7,11 +7,9 @@ from collections import OrderedDict
 
 class Spider(object):
 
-        
     def craw(self, url):
         cont = self.download(url)
         res_data = self.parse(url, cont)
-#         self.output(res_data)
         return res_data.keys()
         
     def download(self, url):
@@ -42,8 +40,3 @@ class Spider(object):
         
         return res_data
     
-    def output(self, data):
-        fout = open('file', 'w')
-        for key in data.iterkeys():
-            fout.write(key + '\n')
-        fout.close()

@@ -1,3 +1,8 @@
 eclipse.preferences.version=1
+encoding//baike/spider_main.py=UTF-8
+encoding//baike/url_manager.py=UTF-8
 encoding//dianping/main.py=utf-8
 encoding//dianping/output=US-ASCII
+encoding//dianping/sender.py=UTF-8
+encoding//dianping/spider.py=UTF-8
+encoding//vps/spider.py=utf-8
