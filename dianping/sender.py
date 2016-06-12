@@ -9,7 +9,8 @@ class Sender(object):
         mail_sender = r"helloc@wo.cn"
         mail_pwd = "xixi728"
         
-        mail_msg = MIMEText(content, format, 'utf-8')
+        # 传入'plain'，最终的MIME就是'text/plain'
+        mail_msg = MIMEText(content, 'plain', 'utf-8')
         mail_msg["Accept-Language"] = "zh-CN"
         mail_msg["Accept-Charset"] = "ISO-8859-1,utf-8"
         mail_msg['Subject'] = title

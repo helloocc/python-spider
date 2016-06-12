@@ -10,7 +10,7 @@ class Spider(object):
     def craw(self, url):
         cont = self.download(url)
         res_data = self.parse(url, cont)
-        return res_data.keys()
+        return res_data
         
     def download(self, url):
         if url is None:
