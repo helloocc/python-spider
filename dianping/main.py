@@ -1,7 +1,7 @@
 # -*--coding:utf-8*-
 import time
-from dianping.spider import Spider
-from dianping.sender import Sender
+from spider import Spider
+from sender import Sender
 from collections import OrderedDict
 
 def check(new_data):
@@ -41,12 +41,12 @@ if __name__ == "__main__":
             new_data = obj_spider.craw(url)
             add_items = check(new_data)
             if(len(add_items) > 0):
-                print "There is new items."
+                print "New items!!!"
                 title = time.strftime('%Y%m%d %H:%M:%S')
                 content = "\n".join(add_items.values())
                 obj_sender.send_email(title, content)
             else:
-                print "No change!"
+                print "No change."
             time.sleep(20)
              
         elif hour < 8 or hour > 20:
