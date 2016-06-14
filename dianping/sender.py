@@ -4,10 +4,10 @@ from email.mime.text import MIMEText
 
 class Sender(object):
     def send_email(self, title, content):
-        mail_recipient = r'helloc@wo.cn'
+        mail_recipient = r'hello@wo.cn'
         mail_host = "smtp.wo.cn"
-        mail_sender = r"helloc@wo.cn"
-        mail_pwd = "xixi728"
+        mail_sender = r"hello@wo.cn"
+        mail_pwd = "xxx"
         
         # 传入'plain'，最终的MIME就是'text/plain'
         mail_msg = MIMEText(content, 'plain', 'utf-8')
