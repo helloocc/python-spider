@@ -5,7 +5,7 @@ import urllib2, re
 from bs4 import BeautifulSoup
 from collections import OrderedDict
 
-class Spider(object):
+class GetCity(object):
 
     def craw(self, url):
         cont = self.download(url)
@@ -34,7 +34,6 @@ class Spider(object):
             return
         soup = BeautifulSoup(cont, 'html.parser', from_encoding='utf-8')
         city_list = list()
-        print url
         
         links = soup.find_all('a', href=re.compile(r"^/[a-z]+$"))
       
