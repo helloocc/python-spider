@@ -1,5 +1,6 @@
 # -*--coding:utf-8*-
 import time
+import os
 from spider import Spider
 from sender import Sender
 from collections import OrderedDict
@@ -9,7 +10,14 @@ def check(new_data):
     file_data = OrderedDict()
     add_items = OrderedDict()
     
-    with open('file', 'r') as f:
+    file_data = OrderedDict()
+    add_items = OrderedDict()
+    
+    #获取当前文件夹的绝对路径
+    BASE_DIR = os.path.dirname(__file__) 
+    file_path = os.path.join(BASE_DIR, 'file') 
+    
+    with open(file_path, 'r') as f:
         lines = (line.strip() for line in f)
         for line in lines:
             if len(line) > 0:
@@ -22,7 +30,7 @@ def check(new_data):
             add_items[key] = value
             
     if len(add_items) > 0:
-            with open('file', 'w') as f:
+            with open(file_path, 'w') as f:
                 for key, value in new_data.iteritems():
                     f.write(key + '#' + value.encode('utf-8'))
                     f.write('\n')
@@ -32,7 +40,7 @@ def check(new_data):
 if __name__ == "__main__":
     obj_spider = Spider()
     obj_sender = Sender()
-    url = "http://s.dianping.com/event/nanjing/c1" 
+    url = "http://s.dianping.com/event/nanjing" 
 
     while True:
         try:
