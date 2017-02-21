@@ -10,9 +10,6 @@ def check(new_data):
     file_data = OrderedDict()
     add_items = OrderedDict()
     
-    file_data = OrderedDict()
-    add_items = OrderedDict()
-    
     #获取当前文件夹的绝对路径
     BASE_DIR = os.path.dirname(__file__) 
     file_path = os.path.join(BASE_DIR, 'file') 
